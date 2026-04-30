@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="SoloPrice">
     
-    <title>SoloPrice VFX v5.2</title>
+    <title>SoloPrice VFX v5.3</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
@@ -73,7 +73,7 @@
                     <p class="text-[8px] text-zinc-500 font-bold uppercase tracking-widest">Calculadora de Parceria</p>
                 </div>
             </div>
-            <div class="text-[9px] font-bold bg-blue-500/10 text-blue-500 px-2 py-1 rounded border border-blue-500/20">V5.2 PRO</div>
+            <div class="text-[9px] font-bold bg-blue-500/10 text-blue-500 px-2 py-1 rounded border border-blue-500/20">V5.3 PRO</div>
         </div>
     </header>
 
@@ -237,7 +237,11 @@
             // Turnaround logic
             let finalDays = p.days;
             if (dur > 5) finalDays += Math.floor(dur / 5);
-            if (urgent) finalDays = Math.max(1, Math.ceil(finalDays / 2.5));
+            
+            if (urgent) {
+                // Redução de tempo hábil para urgência (aprox 35-40% do tempo original)
+                finalDays = Math.max(1, Math.floor(finalDays * 0.35));
+            }
             
             document.getElementById('turnaroundText').innerText = `${finalDays} dia${finalDays > 1 ? 's' : ''} úteis`;
             document.getElementById('priceBRL').innerText = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(brl);
@@ -251,12 +255,14 @@
             const usd = document.getElementById('priceUSD').innerText;
             const days = document.getElementById('turnaroundText').innerText;
             const urgent = document.getElementById('isUrgent').checked;
+            const hasRec = document.getElementById('hasRec').checked;
 
             const text = `*PROPOSTA DE EDIÇÃO - SOLO V5*\n` +
                          `--------------------------------\n` +
                          `📌 *Serviço:* ${p.name}\n` +
                          `⏱️ *Tempo de Vídeo:* ${dur} min\n` +
                          `📅 *Prazo de Entrega:* ${days}\n` +
+                         `${hasRec ? '🎥 *Captação:* Set Externo incluso\n' : ''}` +
                          `${urgent ? '🚨 *PRIORIDADE:* Atendimento Urgente\n' : ''}` +
                          `--------------------------------\n` +
                          `*Entregáveis Inclusos:*\n` +
