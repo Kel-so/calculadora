@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="SoloPrice">
     
-    <title>SoloPrice VFX v5</title>
+    <title>SoloPrice VFX v5.2</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
@@ -73,7 +73,7 @@
                     <p class="text-[8px] text-zinc-500 font-bold uppercase tracking-widest">Calculadora de Parceria</p>
                 </div>
             </div>
-            <div class="text-[9px] font-bold bg-blue-500/10 text-blue-500 px-2 py-1 rounded border border-blue-500/20">V5.0 PRO</div>
+            <div class="text-[9px] font-bold bg-blue-500/10 text-blue-500 px-2 py-1 rounded border border-blue-500/20">V5.2 PRO</div>
         </div>
     </header>
 
@@ -86,7 +86,9 @@
                 <button onclick="setPreset('reels_vfx')" id="btn-reels_vfx" class="btn-preset p-3 rounded-xl text-left text-[11px] font-bold">📱 Reels VFX/Retenção</button>
                 <button onclick="setPreset('ugc_ads')" id="btn-ugc_ads" class="btn-preset p-3 rounded-xl text-left text-[11px] font-bold">🎯 UGC / Ads Venda</button>
                 <button onclick="setPreset('yt_std')" id="btn-yt_std" class="btn-preset p-3 rounded-xl text-left text-[11px] font-bold">📺 YouTube Standard</button>
+                <button onclick="setPreset('yt_gaming')" id="btn-yt_gaming" class="btn-preset p-3 rounded-xl text-left text-[11px] font-bold">🎮 YouTube Gaming</button>
                 <button onclick="setPreset('yt_doc')" id="btn-yt_doc" class="btn-preset p-3 rounded-xl text-left text-[11px] font-bold">🎬 YouTube Doc/Story</button>
+                <button onclick="setPreset('cinematic')" id="btn-cinematic" class="btn-preset p-3 rounded-xl text-left text-[11px] font-bold">🎥 Cinematic Video</button>
                 <button onclick="setPreset('podcast')" id="btn-podcast" class="btn-preset p-3 rounded-xl text-left text-[11px] font-bold">🎙️ Podcast / Talk</button>
                 <button onclick="setPreset('raw_cut')" id="btn-raw_cut" class="btn-preset p-3 rounded-xl text-left text-[11px] font-bold">✂️ Decupagem Solo</button>
             </div>
@@ -112,10 +114,10 @@
                 <label class="text-xs font-bold text-zinc-400 uppercase">Duração do Vídeo</label>
                 <span id="durLabel" class="text-blue-500 font-black text-lg italic">1 min</span>
             </div>
-            <input type="range" id="duration" min="1" max="30" value="1" class="w-full">
+            <input type="range" id="duration" min="1" max="60" value="1" class="w-full">
             <div class="flex justify-between text-[9px] mt-2 text-zinc-600 font-bold uppercase">
                 <span>Fast</span>
-                <span>30 Minutos</span>
+                <span>60 Minutos</span>
             </div>
         </section>
 
@@ -171,10 +173,20 @@
                 items: ["Corte narrativo A-Roll", "Curadoria básica de B-Roll", "Mixagem de áudio", "Color grading básico"],
                 base: { brl: 300, usd: 75 }, extra: { brl: 50, usd: 12 }, days: 4
             },
+            yt_gaming: {
+                name: "YouTube Gaming (High Energy)",
+                items: ["Cortes rápidos e memes", "Zoom dinâmico & Tracking", "SFX e trilha energética", "Pop-ups e assets de game"],
+                base: { brl: 400, usd: 90 }, extra: { brl: 70, usd: 18 }, days: 4
+            },
             yt_doc: {
                 name: "YouTube Estilo Documentário",
                 items: ["Storytelling avançado", "Sound design cinematográfico", "Tratamento de cor premium", "Pesquisa extensiva de B-Roll"],
                 base: { brl: 800, usd: 180 }, extra: { brl: 150, usd: 35 }, days: 7
+            },
+            cinematic: {
+                name: "Cinematic Video / Brand Film",
+                items: ["Color Grading artístico", "Soundscapes e ambiência", "Ritmo e montagem rítmica", "Finalização em 4K/HDR"],
+                base: { brl: 1000, usd: 250 }, extra: { brl: 200, usd: 45 }, days: 8
             },
             podcast: {
                 name: "Podcast / Long-form Edit",
